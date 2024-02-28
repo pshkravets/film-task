@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-import requests
+# import requests
 
 class MoovieList(ListView):
     template_name = 'mooviepage/film_list.html'
