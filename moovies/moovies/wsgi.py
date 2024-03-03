@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 
 import os
 import sys
-path = '/home/hamishwillee/hamishwillee.pythonanywhere.com'
+path = '/home/pkravets/pkravets/.pythonanywhere.com'
 if path not in sys.path:
     sys.path.append(path)
 
