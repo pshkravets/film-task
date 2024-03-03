@@ -10,7 +10,11 @@ from django.forms.models import model_to_dict
 # from rest_framework import generics, status
 # from rest_framework.response import Response
 #
-
+'''
+ MoovieCreate has taken source data for databases from  https://www.omdbapi.com/ by http request, 
+ Firstly i wanted realize this through Rest API and serializators, but it was esely way to do this just through library 
+ "requests"
+'''
 # class MoovieCreate(CreateView):
 #     model = Moovie
 #
@@ -55,7 +59,7 @@ from django.forms.models import model_to_dict
 #             actors = Actor.objects.filter(name__in=moovie_actors)
 #             moovie.actors.add(*actors)
 
-
+''' Main page with film list. I used "get_queryset" coz i need to paginate list also to filter by author/year or actor'''
 class FilmList(ListView):
     model = Moovie
     template_name = 'moviepage/film_list.html'
@@ -84,7 +88,8 @@ class FilmList(ListView):
         context['form'] = form
         return context
 
-
+''' "get_context_data" get ititialize data for form and send a POST request to edit a film (were some dificulties with 
+actors ManyToMany fild but i handle it)'''
 class FilmDetail(DetailView):
     model = Moovie
     template_name = 'moviepage/film_edit.html'
@@ -150,7 +155,7 @@ class FilmDetail(DetailView):
                 movie.actors.add(actor)
         return redirect('film-list')
 
-
+''' Class to Delete moovie'''
 class FilmDelete(DeleteView):
     model = Moovie
 
@@ -160,6 +165,8 @@ class FilmDelete(DeleteView):
         movie_to_delete.delete()
         return redirect('film-list')
 
+
+''' Class to Create moovie'''
 class FilmCreate(CreateView):
     model = Moovie
     template_name = 'moviepage/film_create.html'
