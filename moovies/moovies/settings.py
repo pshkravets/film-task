@@ -65,21 +65,26 @@ WSGI_APPLICATION = 'moovies.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'FilmsDatabase',
+#         'USER': 'sa',
+#         'PASSWORD': 'asa200407',
+#         'HOST': 'DESKTOP-JGLVVL2\MSSQLEXPRESS',
+#         'PORT': '',
+#
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#         },
+#     },
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'FilmsDatabase',
-        'USER': 'sa',
-        'PASSWORD': 'asa200407',
-        'HOST': 'DESKTOP-JGLVVL2\MSSQLEXPRESS',
-        'PORT': '',
-
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-
 
 
 # Password validation

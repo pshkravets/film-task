@@ -9,39 +9,51 @@ from django.forms.models import model_to_dict
 # from rest_framework.views import APIView
 # from rest_framework import generics, status
 # from rest_framework.response import Response
-
+#
 
 # class MoovieCreate(CreateView):
 #     model = Moovie
 #
 #     def get(self, request):
-#         response = requests.get('https://www.omdbapi.com/?apikey=8f357ea6&t=ted').json()
-#         moovie_name = response['Title']
-#         moovie_year = response['Year']
-#         moovie_director = response['Director']
-#         moovie_actors = (response['Actors'].split(', '))
+#         films_data = [
+#             'Batman', 'inception', 'titanic', 'terminator', 'bladerunner', 'Interstellar', 'Logan', 'Fightclub',
+#             'Gentlemen', 'Waschen, schneiden, legen', 'Kingsman', 'Fury', 'Dont Look Up', 'The Godfather', 'Lara Croft',
+#             'Goodfellas', 'The Avengers', 'Iron Man', 'Sherlock Holmes', 'Seven', 'Mad Max', 'Inglourious Basterds',
+#             'Spiderman', 'Avatar', 'Drive', 'Gladiator', 'Shreck', 'The Wolf of Wall Street', 'The Social Network',
+#             'Titanic'
+#         ]
+#         for film in films_data:
+#             try:
+#                 response = requests.get(f'https://www.omdbapi.com/?apikey=8f357ea6&t={film}').json()
+#             except:
+#                 continue
+#             print(response['Title'])
+#             moovie_name = response['Title']
+#             moovie_year = response['Year']
+#             moovie_director = response['Director']
+#             moovie_actors = (response['Actors'].split(', '))
 #
-#         if Producer.objects.filter(name=moovie_director).exists():
-#             moovie_director = Producer.objects.get(name=moovie_director)
-#         else:
-#             Producer(name=moovie_director).save()
-#             moovie_director = Producer.objects.get(name=moovie_director)
+#             if Producer.objects.filter(name=moovie_director).exists():
+#                 moovie_director = Producer.objects.get(name=moovie_director)
+#             else:
+#                 Producer(name=moovie_director).save()
+#                 moovie_director = Producer.objects.get(name=moovie_director)
 #
 #
-#         for actor in moovie_actors:
-#             if Actor.objects.filter(name=actor).exists():
+#             for actor in moovie_actors:
+#                 if Actor.objects.filter(name=actor).exists():
+#                     pass
+#                 else:
+#                     Actor(name=actor).save()
+#
+#             if Moovie.objects.filter(name=moovie_name).exists():
 #                 pass
 #             else:
-#                 Actor(name=actor).save()
+#                 Moovie(name=moovie_name, release_year=moovie_year, producer=moovie_director).save()
 #
-#         if Moovie.objects.filter(name=moovie_name).exists():
-#             pass
-#         else:
-#             Moovie(name=moovie_name, release_year=moovie_year, producer=moovie_director).save()
-#
-#         moovie = Moovie.objects.get(name=moovie_name)
-#         actors = Actor.objects.filter(name__in=moovie_actors)
-#         moovie.actors.add(*actors)
+#             moovie = Moovie.objects.get(name=moovie_name)
+#             actors = Actor.objects.filter(name__in=moovie_actors)
+#             moovie.actors.add(*actors)
 
 
 class FilmList(ListView):
